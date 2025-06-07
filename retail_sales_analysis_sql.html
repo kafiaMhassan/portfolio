@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SQL for Data Analysis - Kafia Hassan's Blog">
+    <meta name="author" content="Kafia Hassan">
+    <title>SQL for Data Analysis - Kafia Hassan</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="index.html">Portfolio</a>
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="index.html#home">Home</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#about">About</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#portfolio">Portfolio</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#blog">Blog</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+    <!-- blog post section -->
+    <section class="section" id="blog-post">
+        <div class="container">
+            <div class="blog-post-content">
+                <h1 class="section-title mb-4">Retail Sales Analysis SQL Project</h1>
+                <div class="blog-post-body">
+                    <h2>Project Overview</h2>
+                    <p><strong>Project Title:</strong> Retail Sales Analysis</p>
+                    <p><strong>Database:</strong> sql_project_p2</p>
+                    <p>This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries.</p>
+
+                    <h2>Objectives</h2>
+                    <ul>
+                        <li>Set up a retail sales database: Create and populate a retail sales database with the provided sales data.</li>
+                        <li>Data Cleaning: Identify and remove any records with missing or null values.</li>
+                        <li>Exploratory Data Analysis (EDA): Perform basic exploratory data analysis to understand the dataset.</li>
+                        <li>Business Analysis: Use SQL to answer specific business questions and derive insights from the sales data.</li>
+                    </ul>
+
+                    <h2>Project Structure</h2>
+                    <h3>1. Database Setup</h3>
+                    <pre><code>CREATE DATABASE sql_project_p2;
+
+CREATE TABLE retail_sales
+(
+    transactions_id INT PRIMARY KEY,
+    sale_date DATE,    
+    sale_time TIME,
+    customer_id INT,    
+    gender VARCHAR(10),
+    age INT,
+    category VARCHAR(35),
+    quantity INT,
+    price_per_unit FLOAT,    
+    cogs FLOAT,
+    total_sale FLOAT
+);</code></pre>
+
+                    <h3>2. Data Exploration & Cleaning</h3>
+                    <p><strong>Record Count:</strong> Determine the total number of records in the dataset.</p>
+                    <pre><code>SELECT COUNT(*) FROM retail_sales;</code></pre>
+
+                    <p><strong>Customer Count:</strong> Find out how many unique customers are in the dataset.</p>
+                    <pre><code>SELECT COUNT(DISTINCT customer_id) FROM retail_sales;</code></pre>
+
+                    <p><strong>Category Count:</strong> Identify all unique product categories in the dataset.</p>
+                    <pre><code>SELECT DISTINCT category FROM retail_sales;</code></pre>
+
+                    <p><strong>Null Value Check:</strong> Check for any null values in the dataset and delete records with missing data.</p>
+                    <pre><code>SELECT * FROM retail_sales
+WHERE 
+    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
+    gender IS NULL OR age IS NULL OR category IS NULL OR 
+    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
+
+DELETE FROM retail_sales
+WHERE 
+    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
+    gender IS NULL OR age IS NULL OR category IS NULL OR 
+    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;</code></pre>
+
+                    <h3>3. Data Analysis & Findings</h3>
+                    <p>The following SQL queries were developed to answer specific business questions:</p>
+
+                    <h4>Sales on Specific Date</h4>
+                    <pre><code>SELECT *
+FROM retail_sales
+WHERE sale_date = '2022-11-05';</code></pre>
+
+                    <h4>Clothing Sales Analysis</h4>
+                    <pre><code>SELECT 
+  *
+FROM retail_sales
+WHERE 
+    category = 'Clothing'
+    AND 
+    TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
+    AND
+    quantity >= 4</code></pre>
+
+                    <h4>Category-wise Sales Analysis</h4>
+                    <pre><code>SELECT 
+    category,
+    SUM(total_sale) as net_sale,
+    COUNT(*) as total_orders
+FROM retail_sales
+GROUP BY 1</code></pre>
+
+                    <h4>Customer Age Analysis</h4>
+                    <pre><code>SELECT
+    ROUND(AVG(age), 2) as avg_age
+FROM retail_sales
+WHERE category = 'Beauty'</code></pre>
+
+                    <h4>High-Value Transactions</h4>
+                    <pre><code>SELECT * FROM retail_sales
+WHERE total_sale > 1000</code></pre>
+
+                    <h4>Gender-based Category Analysis</h4>
+                    <pre><code>SELECT 
+    category,
+    gender,
+    COUNT(*) as total_trans
+FROM retail_sales
+GROUP 
+    BY 
+    category,
+    gender
+ORDER BY 1</code></pre>
+
+                    <h4>Monthly Sales Analysis</h4>
+                    <pre><code>SELECT 
+       year,
+       month,
+    avg_sale
+FROM 
+(    
+SELECT 
+    EXTRACT(YEAR FROM sale_date) as year,
+    EXTRACT(MONTH FROM sale_date) as month,
+    AVG(total_sale) as avg_sale,
+    RANK() OVER(PARTITION BY EXTRACT(YEAR FROM sale_date) ORDER BY AVG(total_sale) DESC) as rank
+FROM retail_sales
+GROUP BY 1, 2
+) as t1
+WHERE rank = 1</code></pre>
+
+                    <h4>Top Customers Analysis</h4>
+                    <pre><code>SELECT 
+    customer_id,
+    SUM(total_sale) as total_sales
+FROM retail_sales
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5</code></pre>
+
+                    <h4>Unique Customers per Category</h4>
+                    <pre><code>SELECT 
+    category,    
+    COUNT(DISTINCT customer_id) as cnt_unique_cs
+FROM retail_sales
+GROUP BY category</code></pre>
+
+                    <h4>Shift-wise Order Analysis</h4>
+                    <pre><code>WITH hourly_sale
+AS
+(
+SELECT *,
+    CASE
+        WHEN EXTRACT(HOUR FROM sale_time) < 12 THEN 'Morning'
+        WHEN EXTRACT(HOUR FROM sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+        ELSE 'Evening'
+    END as shift
+FROM retail_sales
+)
+SELECT 
+    shift,
+    COUNT(*) as total_orders    
+FROM hourly_sale
+GROUP BY shift</code></pre>
+
+                    <h2>Findings</h2>
+                    <ul>
+                        <li><strong>Customer Demographics:</strong> The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.</li>
+                        <li><strong>High-Value Transactions:</strong> Several transactions had a total sale amount greater than 1000, indicating premium purchases.</li>
+                        <li><strong>Sales Trends:</strong> Monthly analysis shows variations in sales, helping identify peak seasons.</li>
+                        <li><strong>Customer Insights:</strong> The analysis identifies the top-spending customers and the most popular product categories.</li>
+                    </ul>
+
+                    <h2>Reports</h2>
+                    <ul>
+                        <li><strong>Sales Summary:</strong> A detailed report summarizing total sales, customer demographics, and category performance.</li>
+                        <li><strong>Trend Analysis:</strong> Insights into sales trends across different months and shifts.</li>
+                        <li><strong>Customer Insights:</strong> Reports on top customers and unique customer counts per category.</li>
+                    </ul>
+                </div>
+                <a href="index.html#blog" class="btn btn-primary mt-4">Back to Blog</a>
+            </div>
+        </div>
+    </section><!-- end of blog post section -->
+
+    <!-- footer -->
+    <div class="container">
+        <footer class="footer">
+            <p class="mb-0">Copyright
+                <script>document.write(new Date().getFullYear())</script> &copy; Kafia Hassan
+            </p>
+            <div class="social-links text-right m-auto ml-sm-auto">
+                <a href="https://public.tableau.com/app/profile/kafia.hassan" class="link"><i class="ti-bar-chart"></i></a>
+                <a href="https://github.com/kafiaMhassan" class="link"><i class="ti-github"></i></a>
+            </div>
+        </footer>
+    </div> <!-- end of page footer -->
+
+    <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Meyawo js -->
+    <script src="assets/js/meyawo.js"></script>
+
+</body>
+
+</html> 

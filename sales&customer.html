@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Building the Sales & Customer Dashboard - Kafia Hassan's Blog">
+    <meta name="author" content="Kafia Hassan">
+    <title>Building the Sales & Customer Dashboard - Kafia Hassan</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <style>
+        .blog-post-body {
+            text-align: left;
+            line-height: 1.8;
+        }
+        .blog-post-body h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .blog-post-body p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-post-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        .blog-post-body li {
+            margin-bottom: 0.5rem;
+        }
+        .blog-post-body img {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="index.html">Portfolio</a>
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="index.html#home">Home</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#about">About</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#portfolio">Portfolio</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#blog">Blog</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="index.html#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+    <!-- blog post section -->
+    <section class="section" id="blog-post">
+        <div class="container">
+            <div class="blog-post-content">
+                <h1 class="section-title mb-4">Building the Sales & Customer Dashboard: A Deep Dive into Business Intelligence with Tableau</h1>
+                <div class="blog-post-body">
+                    <h2>Introduction</h2>
+                    <p>In this blog post, I'll walk you through a project I created in Tableau: a two-part interactive dashboard focusing on Sales and Customer performance for a fictional retail dataset. This project was designed to simulate the kind of reporting and insights a business would need to improve profitability and customer strategy.</p>
+
+                    <h2>Project Overview</h2>
+                    <p><strong>Tools used:</strong> Tableau, Excel</p>
+                    <p><strong>Dashboards created:</strong></p>
+                    <ul>
+                        <li>Sales Dashboard</li>
+                        <li>Customer Dashboard</li>
+                    </ul>
+                    <p><strong>Year of Analysis:</strong> 2023 vs. 2022 (comparative insights)</p>
+                    <p><strong>Purpose:</strong> To provide decision-makers with a clear overview of business performance across sales, customers, and products — all in an interactive, filterable view.</p>
+
+                    <h2>Sales Dashboard – Key Features and Insights</h2>
+                    <p>The Sales Dashboard focuses on three main KPIs:</p>
+                    <ul>
+                        <li>Total Sales: $733K (⬆️ 20.4% YoY growth)</li>
+                        <li>Total Profit: $93K (⬆️ 12.5% YoY growth)</li>
+                        <li>Total Quantity Sold: 12K units (⬆️ 26.8% YoY growth)</li>
+                    </ul>
+                    <p>These KPIs are visualized across a monthly trend from January to December, allowing the user to easily spot seasonal patterns. The highest and lowest-performing months are highlighted for quick context.</p>
+
+                    <h2>Sales & Profit by Subcategory</h2>
+                    <p>A bar chart comparison breaks down 2023 Sales vs. 2022 Sales by product subcategory. This helped me uncover:</p>
+                    <ul>
+                        <li>Top Performers: Phones, Chairs, and Binders</li>
+                        <li>Loss Leaders: Envelopes and Fasteners showed high sales but negative profit, flagging potential pricing or cost issues</li>
+                    </ul>
+                    <p>The color-coding (⬤ Profit / ⬤ Loss) instantly communicates which subcategories are contributing positively or negatively to overall performance.</p>
+
+                    <h2>Sales and Profit Trends Over Time</h2>
+                    <p>A dual-line graph displays monthly trends for both sales and profit. Using this, I could identify:</p>
+                    <ul>
+                        <li>Spikes in Q2 and Q4</li>
+                        <li>Below-average performance in early Q1</li>
+                        <li>Average monthly sales: ~$14K</li>
+                        <li>Average monthly profit: ~$2K</li>
+                    </ul>
+                    <p>This kind of trend analysis is essential for inventory planning, promotional timing, and budget forecasting.</p>
+
+                    <h2>Customer Dashboard – Key Features and Insights</h2>
+                    <p>The Customer Dashboard highlights how the business performed from a customer-centric perspective.</p>
+
+                    <h3>Top-Level KPIs:</h3>
+                    <ul>
+                        <li>Total Customers: 693 (⬆️ 8.6%)</li>
+                        <li>Sales per Customer: $1,058 (⬆️ 10.8%)</li>
+                        <li>Total Orders: 1,687 (⬆️ 28.3%)</li>
+                    </ul>
+                    <p>This indicates not just customer growth, but improved customer value and frequency of purchases.</p>
+
+                    <h2>Customer Distribution by Orders</h2>
+                    <p>This histogram breaks down how many times customers purchased:</p>
+                    <ul>
+                        <li>Most customers placed only 1–2 orders</li>
+                        <li>A small segment placed 5+ orders, which presents a clear opportunity for loyalty or upsell campaigns</li>
+                    </ul>
+
+                    <h2>Top 10 Customers by Profit</h2>
+                    <p>An insightful table lists the top 10 customers by profit contribution, with details like:</p>
+                    <ul>
+                        <li>Name</li>
+                        <li>Last Order Date</li>
+                        <li>Total Profit</li>
+                        <li>Total Sales</li>
+                        <li>Number of Orders</li>
+                    </ul>
+                    <p>For example:</p>
+                    <ul>
+                        <li>Raymond Buch generated the highest profit: $14,203 from 3 orders</li>
+                        <li>Hunter Lopez and Tom Ashbrook also appear as high-value customers with fewer orders but high spend per order</li>
+                    </ul>
+                    <p>This analysis helps identify potential VIP customers for targeted retention strategies.</p>
+
+                    <h2>Interactivity</h2>
+                    <p>Both dashboards are designed with user interactivity in mind. Viewers can:</p>
+                    <ul>
+                        <li>Toggle views for different months</li>
+                        <li>Filter by year or product subcategory</li>
+                        <li>Dive deep into either profitability trends or customer behavior</li>
+                    </ul>
+                    <p>These features make the dashboards dynamic decision-making tools, not just static reports.</p>
+
+                    <h2>What I Learned</h2>
+                    <ul>
+                        <li>The importance of aligning business goals with data KPIs</li>
+                        <li>How to use Tableau's parameters and filters to create multi-view dashboards</li>
+                        <li>Storytelling through data: good dashboards don't just show numbers — they guide action</li>
+                    </ul>
+
+                    <h2>Next Steps</h2>
+                    <p>If this were a real-world case, I'd:</p>
+                    <ul>
+                        <li>Recommend re-evaluating pricing or costs for subcategories like Envelopes and Fasteners</li>
+                        <li>Develop a customer loyalty program targeting repeat buyers</li>
+                        <li>Set up alerts for monthly dips in sales or profit</li>
+                    </ul>
+
+                    <p>To explore the interactive dashboard, visit my <a href="https://public.tableau.com/app/profile/kafia.hassan/viz/SalesCustomerDashboardsDynamic_17488744628170/SalesDashboard" target="_blank">Tableau Public profile</a>.</p>
+                </div>
+                <a href="index.html#blog" class="btn btn-primary mt-4">Back to Blog</a>
+            </div>
+        </div>
+    </section><!-- end of blog post section -->
+
+    <!-- footer -->
+    <div class="container">
+        <footer class="footer">
+            <p class="mb-0">Copyright
+                <script>document.write(new Date().getFullYear())</script> &copy; Kafia Hassan
+            </p>
+            <div class="social-links text-right m-auto ml-sm-auto">
+                <a href="https://public.tableau.com/app/profile/kafia.hassan" class="link"><i class="ti-bar-chart"></i></a>
+                <a href="https://github.com/kafiaMhassan" class="link"><i class="ti-github"></i></a>
+            </div>
+        </footer>
+    </div> <!-- end of page footer -->
+
+    <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Meyawo js -->
+    <script src="assets/js/meyawo.js"></script>
+
+</body>
+
+</html> 
